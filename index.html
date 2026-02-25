@@ -1121,10 +1121,7 @@
                 <h2>Well, That Escalated Beautifully.</h2>
                 <p>Kindly pay for the damage of <strong id="final-amount">₹0</strong> using this QR code</p>
                 <div class="qr-code-container">
-                    <div class="qr-code-placeholder" id="qr-code">
-                        <!-- QR code image goes here -->
-                        <span>QR Code</span>
-                    </div>
+                    <img src="qr-code.png" alt="Payment QR Code" style="width: 180px; height: 180px; object-fit: contain;">
                 </div>
                 <div class="order-id-section">
                     <p class="order-id-label">Your Order ID</p>
@@ -1517,7 +1514,7 @@
 
             try {
                 // Send to Google Sheets
-                const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwRG8vhxdYMyYIv81yVN1OaykRbL_mBpUyuFiMzhjXs9lWQa8UFKIUBmNKsVyI5J4V3dw/exec';
+                const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwvwkLTKoLQR0Clked40D9J52aWmQ7QALwhsL88y3wTNtUoZtnSREk3yRVI0vhZuHZmqA/exec';
                 
                 // Create a hidden form and submit it
                 const hiddenForm = document.createElement('form');
