@@ -1072,6 +1072,18 @@
             height: 60px;
             background: #252525;
             object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .cart-item-image-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 9px;
+            color: var(--text-muted);
+            text-align: center;
+            padding: 4px;
+            word-break: break-word;
         }
 
         .cart-item-details {
@@ -2381,9 +2393,12 @@
                 cartItems.innerHTML = cart.map((item, index) => {
                     const itemTotal = item.price * item.quantity;
                     total += itemTotal;
+                    const imageHtml = item.image 
+                        ? `<img class="cart-item-image" src="${item.image}" alt="${item.design}">`
+                        : `<div class="cart-item-image cart-item-image-placeholder">${item.design}</div>`;
                     return `
                         <div class="cart-item">
-                            <img class="cart-item-image" src="${item.image}" alt="${item.design}">
+                            ${imageHtml}
                             <div class="cart-item-details">
                                 <div class="cart-item-name">${item.categoryName}</div>
                                 <div class="cart-item-variant">${item.design} • ${item.color} • ${item.size}</div>
