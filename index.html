@@ -1322,6 +1322,16 @@
             object-fit: contain;
         }
 
+        .qr-section {
+            margin-top: 20px;
+        }
+
+        .qr-desktop-note {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+
         .upi-options {
             margin: 16px 0;
             width: 100%;
@@ -1424,6 +1434,83 @@
         .design-grid::-webkit-scrollbar-thumb,
         .cart-items-list::-webkit-scrollbar-thumb {
             background: #555;
+        }
+
+        /* Desktop optimization */
+        @media (min-width: 768px) {
+            .container {
+                max-width: 800px;
+                padding: 32px 40px;
+            }
+
+            .landing-content {
+                min-height: 80vh;
+            }
+
+            .landing-text {
+                font-size: 52px;
+                max-width: 700px;
+            }
+
+            .design-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 16px;
+            }
+
+            .step-header {
+                margin-bottom: 28px;
+            }
+
+            .step-title {
+                font-size: 32px;
+            }
+
+            .lightbox-content {
+                max-width: 500px;
+                max-height: 85vh;
+            }
+
+            .lightbox-image {
+                max-height: 300px;
+            }
+
+            .cart-summary {
+                padding: 24px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr 1fr;
+                gap: 16px;
+            }
+
+            .success-message h2 {
+                font-size: 28px;
+            }
+
+            .upi-buttons {
+                max-width: 400px;
+                margin: 0 auto;
+            }
+
+            .qr-code-container img {
+                width: 220px;
+                height: 220px;
+            }
+        }
+
+        /* Large desktop */
+        @media (min-width: 1024px) {
+            .container {
+                max-width: 900px;
+            }
+
+            .design-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .landing-text {
+                font-size: 56px;
+            }
         }
 
         /* Mobile responsive */
@@ -1920,6 +2007,13 @@
                     </div>
                 </div>
                 
+                <div class="qr-section">
+                    <p class="qr-desktop-note">If you're on desktop, scan this QR code to pay</p>
+                    <div class="qr-code-container">
+                        <img src="qr-code.png" alt="Payment QR Code">
+                    </div>
+                </div>
+                
                 <div class="order-id-section">
                     <p class="order-id-label">Your Order ID</p>
                     <div class="order-id" id="order-id">FLX-XXXXX</div>
@@ -1932,6 +2026,16 @@
     </div>
 
     <script>
+        // Preview function for testing
+        function previewSuccess() {
+            orderTotal = 2500;
+            currentOrderId = 'FLX-TEST1';
+            document.getElementById('final-amount').textContent = '₹' + orderTotal;
+            document.getElementById('order-id').textContent = currentOrderId;
+            document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+            document.getElementById('step-success').classList.add('active');
+        }
+
         // Category data with prices and colors
         const categories = {
             'regular': { 
