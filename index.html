@@ -104,8 +104,9 @@
         }
 
         .landing-btn {
-            padding: 16px 32px;
-            font-size: 14px;
+            padding: 12px 40px;
+            font-size: 16px;
+            margin-top: 20px;
         }
 
         /* Store header */
@@ -898,6 +899,11 @@
                 font-size: 32px;
             }
 
+            .landing-btn {
+                padding: 16px 32px;
+                font-size: 14px;
+            }
+
             .step-title {
                 font-size: 20px;
             }
@@ -907,6 +913,29 @@
             .cart-summary,
             .form-group {
                 margin-bottom: 16px;
+            }
+
+            /* Success page mobile */
+            .success-message {
+                padding-top: 20px;
+            }
+
+            .success-message h2 {
+                font-size: 20px;
+            }
+
+            .success-message p {
+                font-size: 14px;
+            }
+
+            .qr-code-container img {
+                width: 200px !important;
+                height: 200px !important;
+            }
+
+            .order-id {
+                font-size: 12px;
+                padding: 8px 14px;
             }
         }
     </style>
@@ -1212,7 +1241,7 @@
                 <h2>Well, That Escalated Beautifully.</h2>
                 <p>Kindly pay for the damage of <strong id="final-amount">₹0</strong> using this QR code</p>
                 <div class="qr-code-container">
-                    <img src="qr-code.png" alt="Payment QR Code" style="width: 180px; height: 180px; object-fit: contain;">
+                    <img src="qr-code.png" alt="Payment QR Code" style="width: 240px; height: 240px; object-fit: contain;">
                 </div>
                 <div class="order-id-section">
                     <p class="order-id-label">Your Order ID</p>
