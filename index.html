@@ -261,7 +261,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.9);
+            background: rgba(0, 0, 0, 0.95);
             z-index: 1000;
             align-items: center;
             justify-content: center;
@@ -271,10 +271,26 @@
             display: flex;
         }
 
+        .lightbox-content {
+            width: 100%;
+            max-width: 540px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            background: var(--bg);
+        }
+
+        .lightbox-scroll {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            padding-top: 60px;
+        }
+
         .lightbox-close {
             position: absolute;
-            top: 20px;
-            right: 20px;
+            top: 16px;
+            right: 16px;
             width: 40px;
             height: 40px;
             background: transparent;
@@ -286,6 +302,7 @@
             align-items: center;
             justify-content: center;
             transition: all 0.15s ease;
+            z-index: 10;
         }
 
         .lightbox-close:hover {
@@ -293,10 +310,187 @@
             border-color: white;
         }
 
+        .lightbox-image-container {
+            width: 100%;
+            aspect-ratio: 1;
+            background: #1a1a1a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 12px;
+        }
+
         .lightbox-image {
-            max-width: 90%;
-            max-height: 80%;
+            max-width: 100%;
+            max-height: 100%;
             object-fit: contain;
+        }
+
+        .lightbox-design-name {
+            font-size: 18px;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 24px;
+            color: var(--text);
+        }
+
+        .lightbox-section {
+            margin-bottom: 20px;
+        }
+
+        .lightbox-label {
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--text);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .lightbox-category-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .lightbox-category {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 16px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .lightbox-category:hover {
+            border-color: var(--accent);
+        }
+
+        .lightbox-category.selected {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .lightbox-category .cat-name {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .lightbox-category .cat-price {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .lightbox-category.selected .cat-price {
+            color: white;
+        }
+
+        .lightbox-color-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+        }
+
+        .lightbox-color {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .lightbox-color:hover {
+            border-color: var(--accent);
+        }
+
+        .lightbox-color.selected {
+            border-color: var(--accent);
+            border-width: 2px;
+        }
+
+        .lightbox-color-swatch {
+            width: 100%;
+            aspect-ratio: 1;
+        }
+
+        .lightbox-color-name {
+            font-size: 10px;
+            color: var(--text);
+            padding: 6px 4px;
+            text-align: center;
+            background: var(--surface);
+        }
+
+        .lightbox-size-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px;
+        }
+
+        .lightbox-size {
+            padding: 12px 8px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            text-align: center;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .lightbox-size:hover {
+            border-color: var(--accent);
+        }
+
+        .lightbox-size.selected {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: white;
+        }
+
+        .lightbox-qty {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            width: fit-content;
+        }
+
+        .lightbox-qty-btn {
+            width: 44px;
+            height: 44px;
+            border: none;
+            background: transparent;
+            color: var(--text);
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .lightbox-qty-btn:hover {
+            background: #252525;
+        }
+
+        .lightbox-qty-value {
+            width: 44px;
+            text-align: center;
+            font-size: 16px;
+            font-weight: 600;
+            border-left: 1px solid var(--border);
+            border-right: 1px solid var(--border);
+            padding: 10px 0;
+        }
+
+        .lightbox-footer {
+            padding: 16px 20px;
+            border-top: 1px solid var(--border);
+            background: var(--bg);
+        }
+
+        .lightbox-add-btn {
+            width: 100%;
         }
 
         /* Design grid */
@@ -694,18 +888,18 @@
         .add-more-btn {
             width: 100%;
             padding: 14px;
-            border: 1px dashed var(--border);
-            background: transparent;
-            color: var(--text-muted);
+            border: none;
+            background: #ffffff;
+            color: #000000;
             font-size: 13px;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.15s ease;
             margin-bottom: 16px;
         }
 
         .add-more-btn:hover {
-            border-color: var(--accent);
-            color: var(--accent);
+            background: #f0f0f0;
         }
 
         /* Form fields */
@@ -1033,10 +1227,79 @@
                 <p class="step-subtitle">Choose your favorite design</p>
             </div>
             
-            <!-- Lightbox -->
-            <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
-                <button class="lightbox-close" onclick="closeLightbox(event)">×</button>
-                <img class="lightbox-image" id="lightbox-image" src="" alt="Design Preview">
+            <!-- Lightbox with full product options -->
+            <div class="lightbox" id="lightbox">
+                <div class="lightbox-content">
+                    <button class="lightbox-close" onclick="closeLightbox(event)">×</button>
+                    
+                    <div class="lightbox-scroll">
+                        <!-- Design Image -->
+                        <div class="lightbox-image-container">
+                            <img class="lightbox-image" id="lightbox-image" src="" alt="Design Preview">
+                        </div>
+                        <div class="lightbox-design-name" id="lightbox-design-name"></div>
+                        
+                        <!-- Category Selection -->
+                        <div class="lightbox-section">
+                            <div class="lightbox-label">Choose your fit</div>
+                            <div class="lightbox-category-list" id="lightbox-categories">
+                                <div class="lightbox-category" data-category="regular" data-price="1000" onclick="selectLightboxCategory(this)">
+                                    <span class="cat-name">Regular T-Shirt</span>
+                                    <span class="cat-price">₹1000</span>
+                                </div>
+                                <div class="lightbox-category" data-category="oversized-tshirt" data-price="1200" onclick="selectLightboxCategory(this)">
+                                    <span class="cat-name">Oversized T-Shirt</span>
+                                    <span class="cat-price">₹1200</span>
+                                </div>
+                                <div class="lightbox-category" data-category="oversized-hoodie" data-price="1800" onclick="selectLightboxCategory(this)">
+                                    <span class="cat-name">Oversized Hoodie</span>
+                                    <span class="cat-price">₹1800</span>
+                                </div>
+                                <div class="lightbox-category" data-category="sweatshirt" data-price="1500" onclick="selectLightboxCategory(this)">
+                                    <span class="cat-name">Sweatshirt</span>
+                                    <span class="cat-price">₹1500</span>
+                                </div>
+                                <div class="lightbox-category" data-category="zipper-hoodie" data-price="2000" onclick="selectLightboxCategory(this)">
+                                    <span class="cat-name">Zipper Hoodie</span>
+                                    <span class="cat-price">₹2000</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Color Selection -->
+                        <div class="lightbox-section" id="lightbox-color-section" style="display: none;">
+                            <div class="lightbox-label">Color</div>
+                            <div class="lightbox-color-grid" id="lightbox-colors"></div>
+                        </div>
+                        
+                        <!-- Size Selection -->
+                        <div class="lightbox-section" id="lightbox-size-section" style="display: none;">
+                            <div class="lightbox-label">Size</div>
+                            <div class="lightbox-size-grid">
+                                <div class="lightbox-size" data-size="S" onclick="selectLightboxSize(this)">S</div>
+                                <div class="lightbox-size" data-size="M" onclick="selectLightboxSize(this)">M</div>
+                                <div class="lightbox-size" data-size="L" onclick="selectLightboxSize(this)">L</div>
+                                <div class="lightbox-size" data-size="XL" onclick="selectLightboxSize(this)">XL</div>
+                                <div class="lightbox-size" data-size="XXL" onclick="selectLightboxSize(this)">XXL</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Quantity Selection -->
+                        <div class="lightbox-section" id="lightbox-qty-section" style="display: none;">
+                            <div class="lightbox-label">Quantity</div>
+                            <div class="lightbox-qty">
+                                <button class="lightbox-qty-btn" onclick="updateLightboxQty(-1)">−</button>
+                                <span class="lightbox-qty-value" id="lightbox-qty-value">1</span>
+                                <button class="lightbox-qty-btn" onclick="updateLightboxQty(1)">+</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Add to Cart Button -->
+                    <div class="lightbox-footer">
+                        <button class="btn btn-primary lightbox-add-btn" id="lightbox-add-btn" onclick="addToCartFromLightbox()" disabled>Add to Cart</button>
+                    </div>
+                </div>
             </div>
             
             <div class="design-grid" id="design-grid">
@@ -1547,28 +1810,141 @@
             document.getElementById('btn-step2').disabled = false;
         }
 
-        function selectDesign(el) {
-            document.querySelectorAll('.design-card').forEach(c => c.classList.remove('selected'));
-            el.classList.add('selected');
-            selectedDesign = el.dataset.design;
-            document.getElementById('btn-step1').disabled = false;
-        }
+        // Lightbox state
+        let lightboxCategory = null;
+        let lightboxCategoryPrice = 0;
+        let lightboxColor = null;
+        let lightboxSize = null;
+        let lightboxQty = 1;
+        let lightboxDesign = null;
 
         function openLightbox(imgEl) {
             const lightbox = document.getElementById('lightbox');
             const lightboxImage = document.getElementById('lightbox-image');
+            const designCard = imgEl.closest('.design-card');
+            
             lightboxImage.src = imgEl.src;
             lightboxImage.alt = imgEl.alt;
+            lightboxDesign = designCard.dataset.design;
+            document.getElementById('lightbox-design-name').textContent = lightboxDesign;
+            
+            // Reset lightbox state
+            lightboxCategory = null;
+            lightboxCategoryPrice = 0;
+            lightboxColor = null;
+            lightboxSize = null;
+            lightboxQty = 1;
+            document.getElementById('lightbox-qty-value').textContent = '1';
+            
+            // Reset selections
+            document.querySelectorAll('.lightbox-category').forEach(c => c.classList.remove('selected'));
+            document.querySelectorAll('.lightbox-color').forEach(c => c.classList.remove('selected'));
+            document.querySelectorAll('.lightbox-size').forEach(c => c.classList.remove('selected'));
+            
+            // Hide color, size, qty sections
+            document.getElementById('lightbox-color-section').style.display = 'none';
+            document.getElementById('lightbox-size-section').style.display = 'none';
+            document.getElementById('lightbox-qty-section').style.display = 'none';
+            document.getElementById('lightbox-add-btn').disabled = true;
+            
             lightbox.classList.add('visible');
             document.body.style.overflow = 'hidden';
         }
 
         function closeLightbox(event) {
-            if (event.target.id === 'lightbox' || event.target.classList.contains('lightbox-close')) {
+            if (event.target.classList.contains('lightbox-close')) {
                 const lightbox = document.getElementById('lightbox');
                 lightbox.classList.remove('visible');
                 document.body.style.overflow = '';
             }
+        }
+
+        function selectLightboxCategory(el) {
+            document.querySelectorAll('.lightbox-category').forEach(c => c.classList.remove('selected'));
+            el.classList.add('selected');
+            lightboxCategory = el.dataset.category;
+            lightboxCategoryPrice = parseInt(el.dataset.price);
+            
+            // Load colors for this category
+            const colorGrid = document.getElementById('lightbox-colors');
+            const categoryColors = categories[lightboxCategory].colors;
+            
+            colorGrid.innerHTML = categoryColors.map(color => `
+                <div class="lightbox-color" data-color="${color.name}" onclick="selectLightboxColor(this)">
+                    <div class="lightbox-color-swatch" style="background: ${color.hex}"></div>
+                    <div class="lightbox-color-name">${color.name}</div>
+                </div>
+            `).join('');
+            
+            // Show color section, reset color/size selection
+            document.getElementById('lightbox-color-section').style.display = 'block';
+            document.getElementById('lightbox-size-section').style.display = 'none';
+            document.getElementById('lightbox-qty-section').style.display = 'none';
+            lightboxColor = null;
+            lightboxSize = null;
+            document.querySelectorAll('.lightbox-size').forEach(c => c.classList.remove('selected'));
+            checkLightboxComplete();
+        }
+
+        function selectLightboxColor(el) {
+            document.querySelectorAll('.lightbox-color').forEach(c => c.classList.remove('selected'));
+            el.classList.add('selected');
+            lightboxColor = el.dataset.color;
+            
+            // Show size section
+            document.getElementById('lightbox-size-section').style.display = 'block';
+            document.getElementById('lightbox-qty-section').style.display = 'none';
+            lightboxSize = null;
+            document.querySelectorAll('.lightbox-size').forEach(c => c.classList.remove('selected'));
+            checkLightboxComplete();
+        }
+
+        function selectLightboxSize(el) {
+            document.querySelectorAll('.lightbox-size').forEach(c => c.classList.remove('selected'));
+            el.classList.add('selected');
+            lightboxSize = el.dataset.size;
+            
+            // Show quantity section
+            document.getElementById('lightbox-qty-section').style.display = 'block';
+            checkLightboxComplete();
+        }
+
+        function updateLightboxQty(change) {
+            lightboxQty = Math.max(1, Math.min(10, lightboxQty + change));
+            document.getElementById('lightbox-qty-value').textContent = lightboxQty;
+        }
+
+        function checkLightboxComplete() {
+            const isComplete = lightboxCategory && lightboxColor && lightboxSize;
+            document.getElementById('lightbox-add-btn').disabled = !isComplete;
+        }
+
+        function addToCartFromLightbox() {
+            cart.push({
+                category: lightboxCategory,
+                categoryName: categories[lightboxCategory].name,
+                price: lightboxCategoryPrice,
+                design: lightboxDesign,
+                color: lightboxColor,
+                size: lightboxSize,
+                quantity: lightboxQty
+            });
+            
+            // Close lightbox
+            document.getElementById('lightbox').classList.remove('visible');
+            document.body.style.overflow = '';
+            
+            // Go to cart
+            renderCart();
+            showStep(4);
+            document.querySelector('.progress').style.display = 'flex';
+        }
+
+        function selectDesign(el) {
+            document.querySelectorAll('.design-card').forEach(c => c.classList.remove('selected'));
+            el.classList.add('selected');
+            selectedDesign = el.dataset.design;
+            document.getElementById('btn-step1').disabled = false;
         }
 
         function selectColor(el) {
