@@ -1071,11 +1071,7 @@
             width: 60px;
             height: 60px;
             background: #252525;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 10px;
-            color: var(--text-muted);
+            object-fit: cover;
         }
 
         .cart-item-details {
@@ -2222,11 +2218,13 @@
         }
 
         function addToCartFromLightbox() {
+            const imageUrl = document.getElementById('lightbox-image').src;
             cart.push({
                 category: lightboxCategory,
                 categoryName: categories[lightboxCategory].name,
                 price: lightboxCategoryPrice,
                 design: lightboxDesign,
+                image: imageUrl,
                 color: lightboxColor,
                 size: lightboxSize,
                 quantity: lightboxQty
@@ -2385,7 +2383,7 @@
                     total += itemTotal;
                     return `
                         <div class="cart-item">
-                            <div class="cart-item-image">${item.design}</div>
+                            <img class="cart-item-image" src="${item.image}" alt="${item.design}">
                             <div class="cart-item-details">
                                 <div class="cart-item-name">${item.categoryName}</div>
                                 <div class="cart-item-variant">${item.design} • ${item.color} • ${item.size}</div>
