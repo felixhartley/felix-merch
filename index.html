@@ -36,6 +36,76 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            position: relative;
+            padding-bottom: 100px;
+        }
+
+        /* Navigation buttons - sticky bottom */
+        .nav-buttons {
+            display: flex;
+            gap: 10px;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 16px 20px;
+            background: var(--bg);
+            border-top: 1px solid var(--border);
+            max-width: 540px;
+            margin: 0 auto;
+            z-index: 100;
+        }
+
+        /* Landing page */
+        .landing-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 70vh;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .landing-text {
+            font-size: 50px;
+            font-weight: 400;
+            font-style: italic;
+            font-family: Georgia, 'Times New Roman', serif;
+            color: var(--text);
+            line-height: 1.2;
+            margin-bottom: 40px;
+        }
+
+        .landing-btn {
+            padding: 16px 32px;
+            font-size: 14px;
+        }
+
+        /* Landing page */
+        .landing-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 70vh;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .landing-text {
+            font-size: 50px;
+            font-weight: 400;
+            font-style: italic;
+            font-family: Georgia, 'Times New Roman', serif;
+            color: var(--text);
+            line-height: 1.2;
+            margin-bottom: 40px;
+        }
+
+        .landing-btn {
+            padding: 16px 32px;
+            font-size: 14px;
         }
 
         /* Store header */
@@ -222,7 +292,7 @@
             grid-template-columns: repeat(2, 1fr);
             gap: 12px;
             margin-bottom: 24px;
-            max-height: 480px;
+            flex: 1;
             overflow-y: auto;
             padding-right: 4px;
         }
@@ -670,14 +740,6 @@
             gap: 10px;
         }
 
-        /* Navigation buttons */
-        .nav-buttons {
-            display: flex;
-            gap: 10px;
-            margin-top: auto;
-            padding-top: 20px;
-        }
-
         .btn {
             flex: 1;
             padding: 14px 20px;
@@ -821,17 +883,38 @@
         .cart-items-list::-webkit-scrollbar-thumb {
             background: #555;
         }
+
+        /* Mobile responsive */
+        @media (max-width: 540px) {
+            .container {
+                padding: 16px 16px 100px;
+            }
+
+            .nav-buttons {
+                padding: 16px;
+            }
+
+            .landing-text {
+                font-size: 32px;
+            }
+
+            .step-title {
+                font-size: 20px;
+            }
+
+            .category-list,
+            .options-section,
+            .cart-summary,
+            .form-group {
+                margin-bottom: 16px;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Store Header -->
-        <div class="store-header" id="store-header">
-            <div class="store-logo">Felix shamelessly shoved a link. You clicked. Now you're here, no turning back. A T-shirt purchase restores balance to the universe.</div>
-        </div>
-
         <!-- Progress Indicator -->
-        <div class="progress">
+        <div class="progress" style="display: none;">
             <div class="progress-dot" id="prog-1"></div>
             <div class="progress-dot" id="prog-2"></div>
             <div class="progress-dot" id="prog-3"></div>
@@ -839,8 +922,16 @@
             <div class="progress-dot" id="prog-5"></div>
         </div>
 
+        <!-- Landing Page -->
+        <div class="step active" id="step-landing">
+            <div class="landing-content">
+                <p class="landing-text">Felix shamelessly shoved a link. You clicked. Now you're here, no turning back. A T-shirt purchase restores balance to the universe.</p>
+                <button class="btn btn-primary landing-btn" onclick="startShopping()">Okay, I'm Curious</button>
+            </div>
+        </div>
+
         <!-- Step 1: Browse Designs -->
-        <div class="step active" id="step-1">
+        <div class="step" id="step-1">
             <div class="step-header">
                 <div class="step-label">Step 1 of 5</div>
                 <h1 class="step-title">Adopt this tee</h1>
@@ -1215,7 +1306,23 @@
         let quantity = 1;
         let cart = [];
 
+        // Start shopping from landing page
+        function startShopping() {
+            document.getElementById('step-landing').classList.remove('active');
+            document.getElementById('step-1').classList.add('active');
+            document.querySelector('.progress').style.display = 'flex';
+            updateProgress();
+        }
+
         // Navigation
+        // Landing page
+        function startShopping() {
+            document.getElementById('step-landing').classList.remove('active');
+            document.getElementById('step-1').classList.add('active');
+            document.querySelector('.progress').style.display = 'flex';
+            updateProgress();
+        }
+
         function updateProgress() {
             for (let i = 1; i <= 5; i++) {
                 const dot = document.getElementById(`prog-${i}`);
@@ -1233,14 +1340,6 @@
             document.getElementById(`step-${step}`).classList.add('active');
             currentStep = step;
             updateProgress();
-            
-            // Show header only on step 1
-            const header = document.getElementById('store-header');
-            if (step === 1) {
-                header.style.display = 'block';
-            } else {
-                header.style.display = 'none';
-            }
         }
 
         function nextStep() {
