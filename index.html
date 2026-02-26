@@ -1322,6 +1322,20 @@
             object-fit: contain;
         }
 
+        .upi-pay-btn {
+            width: 100%;
+            max-width: 280px;
+            padding: 16px 24px;
+            font-size: 16px;
+            margin: 8px 0;
+        }
+
+        .or-divider {
+            color: var(--text-muted);
+            font-size: 12px;
+            margin: 12px 0;
+        }
+
         .continue-shopping {
             text-align: center;
             padding: 20px 0;
@@ -1837,7 +1851,9 @@
                     </svg>
                 </div>
                 <h2>Well, That Escalated Beautifully.</h2>
-                <p>Kindly pay for the damage of <strong id="final-amount">₹0</strong> using this QR code</p>
+                <p>Kindly pay <strong id="final-amount">₹0</strong> to complete your order</p>
+                <button class="btn btn-primary upi-pay-btn" id="upi-pay-btn" onclick="openUPIPay()">Pay with UPI</button>
+                <p class="or-divider">or scan QR code</p>
                 <div class="qr-code-container">
                     <img src="qr-code.png" alt="Payment QR Code">
                 </div>
@@ -1938,6 +1954,21 @@
         function startShopping() {
             document.getElementById('step-landing').classList.remove('active');
             document.getElementById('step-1').classList.add('active');
+        }
+
+        // UPI Payment
+        let orderTotal = 0;
+        let currentOrderId = '';
+
+        function openUPIPay() {
+            const upiId = 'felhty@okicici';
+            const name = 'Felix Merch';
+            const amount = orderTotal;
+            const transactionNote = 'Order ' + currentOrderId;
+            
+            const upiUrl = `upi://pay?pa=${upiId}&pn=${encodeURIComponent(name)}&am=${amount}&cu=INR&tn=${encodeURIComponent(transactionNote)}`;
+            
+            window.location.href = upiUrl;
         }
 
         // Start progress bar animation and auto-transition
@@ -2509,6 +2540,10 @@
                 orders.push(orderData);
                 localStorage.setItem('felix_merch_orders', JSON.stringify(orders));
                 
+                // Save for UPI payment
+                orderTotal = totalAmount;
+                currentOrderId = orderData.orderId;
+                
                 // Show success
                 document.getElementById('order-id').textContent = orderData.orderId;
                 document.getElementById('final-amount').textContent = '₹' + totalAmount;
@@ -2521,6 +2556,10 @@
                 
             } catch (error) {
                 console.error('Error:', error);
+                
+                // Save for UPI payment
+                orderTotal = totalAmount;
+                currentOrderId = orderData.orderId;
                 
                 // Still show success page even if API fails
                 document.getElementById('order-id').textContent = orderData.orderId;
