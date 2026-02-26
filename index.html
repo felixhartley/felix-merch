@@ -71,6 +71,26 @@
             z-index: 100;
         }
 
+        /* Sticky checkout button */
+        .sticky-checkout {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 16px 20px;
+            background: var(--bg);
+            border-top: 1px solid var(--border);
+            max-width: 540px;
+            margin: 0 auto;
+            z-index: 100;
+        }
+
+        .sticky-checkout-btn {
+            width: 100%;
+            padding: 16px;
+            font-size: 14px;
+        }
+
         /* Landing page */
         .landing-content {
             display: flex;
@@ -508,9 +528,10 @@
             background: var(--surface);
             border: 1px solid var(--border);
             padding: 8px;
-            cursor: default;
+            cursor: pointer;
             transition: all 0.15s ease;
             text-align: center;
+            position: relative;
         }
 
         .design-card:hover {
@@ -528,6 +549,31 @@
 
         .design-card.selected .design-image {
             opacity: 0.9;
+        }
+
+        .design-plus-btn {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            width: 32px;
+            height: 32px;
+            background: var(--accent);
+            border: none;
+            color: white;
+            font-size: 20px;
+            font-weight: 400;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.15s ease;
+            z-index: 2;
+            line-height: 1;
+        }
+
+        .design-plus-btn:hover {
+            background: #c73d47;
+            transform: scale(1.1);
         }
 
         .design-image {
@@ -551,33 +597,8 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            margin-bottom: 8px;
             color: var(--text);
-        }
-
-        .design-select-btn {
-            width: 100%;
-            padding: 8px;
-            background: transparent;
-            border: 1px solid var(--border);
-            color: var(--text);
-            font-size: 11px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            cursor: pointer;
-            transition: all 0.15s ease;
-        }
-
-        .design-select-btn:hover {
-            border-color: var(--accent);
-            color: var(--accent);
-        }
-
-        .design-card.selected .design-select-btn {
-            background: white;
-            border-color: white;
-            color: var(--accent);
+            padding: 4px 0;
         }
 
         /* Options section */
@@ -1202,14 +1223,6 @@
 </head>
 <body>
     <div class="container">
-        <!-- Progress Indicator -->
-        <div class="progress" style="display: none;">
-            <div class="progress-dot" id="prog-1"></div>
-            <div class="progress-dot" id="prog-2"></div>
-            <div class="progress-dot" id="prog-3"></div>
-            <div class="progress-dot" id="prog-4"></div>
-            <div class="progress-dot" id="prog-5"></div>
-        </div>
 
         <!-- Landing Page -->
         <div class="step active" id="step-landing">
@@ -1222,7 +1235,7 @@
         <!-- Step 1: Browse Designs -->
         <div class="step" id="step-1">
             <div class="step-header">
-                <div class="step-label">Step 1 of 5</div>
+                
                 <h1 class="step-title">Adopt this tee</h1>
                 <p class="step-subtitle">Choose your favorite design</p>
             </div>
@@ -1306,93 +1319,97 @@
                 <div class="design-card" data-design="Question Everything">
                     <img class="design-image" src="designs/question everything.jpg" alt="Question Everything" onclick="openLightbox(this)">
                     <div class="design-name">Question Everything</div>
-                    <button class="design-select-btn" onclick="selectDesign(this.parentElement)">Yep, This one</button>
+                    <button class="design-plus-btn" onclick="openLightboxFromCard(this.parentElement)">+</button>
                 </div>
                 <div class="design-card" data-design="Yes And Truckart">
                     <img class="design-image" src="designs/yesand Truckart.jpg" alt="Yes And Truckart" onclick="openLightbox(this)">
                     <div class="design-name">Yes And Truckart</div>
-                    <button class="design-select-btn" onclick="selectDesign(this.parentElement)">Yep, This one</button>
+                    <button class="design-plus-btn" onclick="openLightboxFromCard(this.parentElement)">+</button>
                 </div>
                 <div class="design-card" data-design="Improv Venn Diagram">
                     <img class="design-image" src="designs/improv venn diagram.jpg" alt="Improv Venn Diagram" onclick="openLightbox(this)">
                     <div class="design-name">Improv Venn Diagram</div>
-                    <button class="design-select-btn" onclick="selectDesign(this.parentElement)">Yep, This one</button>
+                    <button class="design-plus-btn" onclick="openLightboxFromCard(this.parentElement)">+</button>
                 </div>
                 <div class="design-card" data-design="Yes And Plain">
                     <img class="design-image" src="designs/yesand_plain.jpg" alt="Yes And Plain" onclick="openLightbox(this)">
                     <div class="design-name">Yes And Plain</div>
-                    <button class="design-select-btn" onclick="selectDesign(this.parentElement)">Yep, This one</button>
+                    <button class="design-plus-btn" onclick="openLightboxFromCard(this.parentElement)">+</button>
                 </div>
                 <div class="design-card" data-design="What What">
                     <img class="design-image" src="designs/what what.jpg" alt="What What" onclick="openLightbox(this)">
                     <div class="design-name">What What</div>
-                    <button class="design-select-btn" onclick="selectDesign(this.parentElement)">Yep, This one</button>
+                    <button class="design-plus-btn" onclick="openLightboxFromCard(this.parentElement)">+</button>
                 </div>
                 <div class="design-card" data-design="Super">
                     <img class="design-image" src="designs/super.jpg" alt="Super" onclick="openLightbox(this)">
                     <div class="design-name">Super</div>
-                    <button class="design-select-btn" onclick="selectDesign(this.parentElement)">Yep, This one</button>
+                    <button class="design-plus-btn" onclick="openLightboxFromCard(this.parentElement)">+</button>
                 </div>
                 <div class="design-card" data-design="Ayoo">
                     <img class="design-image" src="designs/ayoo.jpg" alt="Ayoo" onclick="openLightbox(this)">
                     <div class="design-name">Ayoo</div>
-                    <button class="design-select-btn" onclick="selectDesign(this.parentElement)">Yep, This one</button>
+                    <button class="design-plus-btn" onclick="openLightboxFromCard(this.parentElement)">+</button>
                 </div>
                 <div class="design-card" data-design="Improv Stage">
                     <img class="design-image" src="designs/improv stage.jpg" alt="Improv Stage" onclick="openLightbox(this)">
                     <div class="design-name">Improv Stage</div>
-                    <button class="design-select-btn" onclick="selectDesign(this.parentElement)">Yep, This one</button>
+                    <button class="design-plus-btn" onclick="openLightboxFromCard(this.parentElement)">+</button>
                 </div>
                 <div class="design-card" data-design="Moo">
                     <img class="design-image" src="designs/moo.jpg" alt="Moo" onclick="openLightbox(this)">
                     <div class="design-name">Moo</div>
-                    <button class="design-select-btn" onclick="selectDesign(this.parentElement)">Yep, This one</button>
+                    <button class="design-plus-btn" onclick="openLightboxFromCard(this.parentElement)">+</button>
                 </div>
                 <div class="design-card" data-design="Awesome Rasam">
                     <img class="design-image" src="designs/awesome rasam.jpg" alt="Awesome Rasam" onclick="openLightbox(this)">
                     <div class="design-name">Awesome Rasam</div>
-                    <button class="design-select-btn" onclick="selectDesign(this.parentElement)">Yep, This one</button>
+                    <button class="design-plus-btn" onclick="openLightboxFromCard(this.parentElement)">+</button>
                 </div>
                 <div class="design-card" data-design="Giraffe">
                     <img class="design-image" src="designs/giraffe.jpg" alt="Giraffe" onclick="openLightbox(this)">
                     <div class="design-name">Giraffe</div>
-                    <button class="design-select-btn" onclick="selectDesign(this.parentElement)">Yep, This one</button>
+                    <button class="design-plus-btn" onclick="openLightboxFromCard(this.parentElement)">+</button>
                 </div>
                 <div class="design-card" data-design="Sassy Kitty">
                     <img class="design-image" src="designs/sassy kitty.jpg" alt="Sassy Kitty" onclick="openLightbox(this)">
                     <div class="design-name">Sassy Kitty</div>
-                    <button class="design-select-btn" onclick="selectDesign(this.parentElement)">Yep, This one</button>
+                    <button class="design-plus-btn" onclick="openLightboxFromCard(this.parentElement)">+</button>
                 </div>
                 <div class="design-card" data-design="Foxy">
                     <img class="design-image" src="designs/foxy.jpg" alt="Foxy" onclick="openLightbox(this)">
                     <div class="design-name">Foxy</div>
-                    <button class="design-select-btn" onclick="selectDesign(this.parentElement)">Yep, This one</button>
+                    <button class="design-plus-btn" onclick="openLightboxFromCard(this.parentElement)">+</button>
                 </div>
                 <div class="design-card" data-design="Yes And Type">
                     <img class="design-image" src="designs/yesand type.jpg" alt="Yes And Type" onclick="openLightbox(this)">
                     <div class="design-name">Yes And Type</div>
-                    <button class="design-select-btn" onclick="selectDesign(this.parentElement)">Yep, This one</button>
+                    <button class="design-plus-btn" onclick="openLightboxFromCard(this.parentElement)">+</button>
                 </div>
                 <div class="design-card" data-design="And Scene">
                     <img class="design-image" src="designs/and scene.jpg" alt="And Scene" onclick="openLightbox(this)">
                     <div class="design-name">And Scene</div>
-                    <button class="design-select-btn" onclick="selectDesign(this.parentElement)">Yep, This one</button>
+                    <button class="design-plus-btn" onclick="openLightboxFromCard(this.parentElement)">+</button>
                 </div>
                 <div class="design-card" data-design="Eat Sleep Improv">
                     <img class="design-image" src="designs/eat sleep improv.jpg" alt="Eat Sleep Improv" onclick="openLightbox(this)">
                     <div class="design-name">Eat Sleep Improv</div>
-                    <button class="design-select-btn" onclick="selectDesign(this.parentElement)">Yep, This one</button>
+                    <button class="design-plus-btn" onclick="openLightboxFromCard(this.parentElement)">+</button>
                 </div>
             </div>
-            <div class="nav-buttons">
-                <button class="btn btn-primary" onclick="nextStep()" id="btn-step1" disabled>Let's do this</button>
-            </div>
+        </div>
+
+        <!-- Sticky Checkout Button -->
+        <div class="sticky-checkout" id="sticky-checkout" style="display: none;">
+            <button class="btn btn-primary sticky-checkout-btn" onclick="goToCheckout()">
+                <span id="sticky-checkout-text">Checkout</span>
+            </button>
         </div>
 
         <!-- Step 2: Browse Categories -->
         <div class="step" id="step-2">
             <div class="step-header">
-                <div class="step-label">Step 2 of 5</div>
+                
                 <h1 class="step-title">Choose your fit</h1>
                 <p class="step-subtitle">It's just a category. Totally harmless.</p>
             </div>
@@ -1437,7 +1454,7 @@
         <!-- Step 3: Color, Size & Quantity -->
         <div class="step" id="step-3">
             <div class="step-header">
-                <div class="step-label">Step 3 of 5</div>
+                
                 <h1 class="step-title">Customize</h1>
                 <p class="step-subtitle">Colour, size, quantity. The holy trinity of good decisions.</p>
             </div>
@@ -1493,7 +1510,7 @@
         <!-- Step 4: Cart Review -->
         <div class="step" id="step-4">
             <div class="step-header">
-                <div class="step-label">Step 4 of 5</div>
+                
                 <h1 class="step-title">Well Well… Look What Happened</h1>
                 <p class="step-subtitle">Final check. No pressure.</p>
             </div>
@@ -1509,7 +1526,7 @@
                 </div>
             </div>
             <div class="nav-buttons">
-                <button class="btn btn-secondary" onclick="prevStep()">Back</button>
+                <button class="btn btn-secondary" onclick="backToDesigns()">Back</button>
                 <button class="btn btn-primary" onclick="nextStep()" id="btn-step4">I Regret Nothing</button>
             </div>
         </div>
@@ -1517,7 +1534,7 @@
         <!-- Step 5: Checkout Form -->
         <div class="step" id="step-5">
             <div class="step-header">
-                <div class="step-label">Step 5 of 5</div>
+                
                 <h1 class="step-title">Checkout</h1>
                 <p class="step-subtitle">The Part Where You Type Things</p>
             </div>
@@ -1553,7 +1570,6 @@
                     <textarea class="form-input" name="notes" placeholder="Any special requests or notes?" style="min-height: 60px"></textarea>
                 </div>
                 <div class="nav-buttons">
-                    <button type="button" class="btn btn-secondary" onclick="prevStep()">Back</button>
                     <button type="submit" class="btn btn-primary">Make It Official</button>
                 </div>
             </form>
@@ -1665,39 +1681,17 @@
         let cart = [];
 
         // Start shopping from landing page
-        function startShopping() {
-            document.getElementById('step-landing').classList.remove('active');
-            document.getElementById('step-1').classList.add('active');
-            document.querySelector('.progress').style.display = 'flex';
-            updateProgress();
-        }
-
         // Navigation
         // Landing page
         function startShopping() {
             document.getElementById('step-landing').classList.remove('active');
             document.getElementById('step-1').classList.add('active');
-            document.querySelector('.progress').style.display = 'flex';
-            updateProgress();
-        }
-
-        function updateProgress() {
-            for (let i = 1; i <= 5; i++) {
-                const dot = document.getElementById(`prog-${i}`);
-                dot.classList.remove('active', 'completed');
-                if (i < currentStep) {
-                    dot.classList.add('completed');
-                } else if (i === currentStep) {
-                    dot.classList.add('active');
-                }
-            }
         }
 
         function showStep(step) {
             document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
             document.getElementById(`step-${step}`).classList.add('active');
             currentStep = step;
-            updateProgress();
         }
 
         function nextStep() {
@@ -1818,6 +1812,11 @@
         let lightboxQty = 1;
         let lightboxDesign = null;
 
+        function openLightboxFromCard(cardEl) {
+            const imgEl = cardEl.querySelector('.design-image');
+            openLightbox(imgEl);
+        }
+
         function openLightbox(imgEl) {
             const lightbox = document.getElementById('lightbox');
             const lightboxImage = document.getElementById('lightbox-image');
@@ -1934,10 +1933,33 @@
             document.getElementById('lightbox').classList.remove('visible');
             document.body.style.overflow = '';
             
-            // Go to cart
+            // Show sticky checkout button
+            updateStickyCheckout();
+        }
+
+        function updateStickyCheckout() {
+            const stickyCheckout = document.getElementById('sticky-checkout');
+            if (cart.length > 0) {
+                const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                const itemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+                document.getElementById('sticky-checkout-text').textContent = `Checkout (${itemCount} item${itemCount > 1 ? 's' : ''}) • ₹${total}`;
+                stickyCheckout.style.display = 'block';
+            } else {
+                stickyCheckout.style.display = 'none';
+            }
+        }
+
+        function goToCheckout() {
             renderCart();
             showStep(4);
-            document.querySelector('.progress').style.display = 'flex';
+            // Hide sticky checkout on cart page
+            document.getElementById('sticky-checkout').style.display = 'none';
+        }
+
+        function backToDesigns() {
+            showStep(1);
+            // Show sticky checkout again if cart has items
+            updateStickyCheckout();
         }
 
         function selectDesign(el) {
@@ -2123,7 +2145,7 @@
                 document.getElementById('final-amount').textContent = '₹' + totalAmount;
                 document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
                 document.getElementById('step-success').classList.add('active');
-                document.querySelector('.progress').style.display = 'none';
+                
                 
                 // Clear cart
                 cart = [];
@@ -2136,7 +2158,7 @@
                 document.getElementById('final-amount').textContent = '₹' + totalAmount;
                 document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
                 document.getElementById('step-success').classList.add('active');
-                document.querySelector('.progress').style.display = 'none';
+                
             }
             
             submitBtn.disabled = false;
@@ -2154,20 +2176,17 @@
             
             document.getElementById('checkout-form').reset();
             document.getElementById('qty-value').textContent = '1';
-            document.getElementById('btn-step1').disabled = true;
-            document.getElementById('btn-step2').disabled = true;
-            document.getElementById('btn-step3').disabled = true;
             
             document.querySelectorAll('.category-card').forEach(c => c.classList.remove('selected'));
             document.querySelectorAll('.design-card').forEach(c => c.classList.remove('selected'));
             document.querySelectorAll('.color-btn').forEach(c => c.classList.remove('selected'));
             document.querySelectorAll('.size-btn').forEach(c => c.classList.remove('selected'));
             
-            document.querySelector('.progress').style.display = 'flex';
+            // Hide sticky checkout
+            document.getElementById('sticky-checkout').style.display = 'none';
+            
             showStep(1);
         }
-
-        updateProgress();
     </script>
 </body>
 </html>
