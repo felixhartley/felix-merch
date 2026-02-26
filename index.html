@@ -276,13 +276,13 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            min-height: 70vh;
+            min-height: 100vh;
             text-align: center;
             padding: 20px;
         }
 
         .landing-text {
-            font-size: 50px;
+            font-size: 46px;
             font-weight: 400;
             font-style: italic;
             font-family: Georgia, 'Times New Roman', serif;
@@ -291,33 +291,22 @@
             margin-bottom: 40px;
         }
 
-        /* Landing page */
-        .landing-content {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            min-height: 70vh;
-            text-align: center;
-            padding: 20px;
+        .landing-progress-bar {
+            width: 120px;
+            height: 2px;
+            background: var(--border);
+            overflow: hidden;
         }
 
-        .landing-text {
-            font-size: 50px;
-            font-weight: 400;
-            font-style: italic;
-            font-family: Georgia, 'Times New Roman', serif;
-            color: var(--text);
-            line-height: 1.2;
-            margin-bottom: 40px;
+        .landing-progress-fill {
+            width: 0%;
+            height: 100%;
+            background: var(--accent);
+            transition: width 5s linear;
         }
 
-        .landing-btn {
-            padding: 12px 20px;
-            font-size: 13px;
-            margin-top: 20px;
-            width: auto;
-            flex: none;
+        .landing-progress-fill.active {
+            width: 100%;
         }
 
         /* Store header */
@@ -1389,12 +1378,7 @@
             }
 
             .landing-text {
-                font-size: 32px;
-            }
-
-            .landing-btn {
-                padding: 12px 20px;
-                font-size: 13px;
+                font-size: 28px;
             }
 
             .step-title {
@@ -1463,7 +1447,9 @@
         <div class="step active" id="step-landing">
             <div class="landing-content">
                 <p class="landing-text">Felix shamelessly shoved a link. You clicked. Now you're here, no turning back. A T-shirt purchase restores balance to the universe.</p>
-                <button class="btn btn-primary landing-btn" onclick="startShopping()">Okay, I'm Curious</button>
+                <div class="landing-progress-bar">
+                    <div class="landing-progress-fill" id="landing-progress-fill"></div>
+                </div>
             </div>
         </div>
 
@@ -1948,12 +1934,22 @@
         let cart = [];
 
         // Start shopping from landing page
-        // Navigation
-        // Landing page
+        // Landing page - auto transition after 3 seconds
         function startShopping() {
             document.getElementById('step-landing').classList.remove('active');
             document.getElementById('step-1').classList.add('active');
         }
+
+        // Start progress bar animation and auto-transition
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.getElementById('landing-progress-fill').classList.add('active');
+            }, 100);
+            
+            setTimeout(function() {
+                startShopping();
+            }, 5100);
+        });
 
         function showStep(step) {
             document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
