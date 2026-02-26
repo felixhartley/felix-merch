@@ -91,6 +91,185 @@
             font-size: 14px;
         }
 
+        /* Floating Cart Button */
+        .floating-cart-btn {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            width: 56px;
+            height: 56px;
+            background: #ffffff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            z-index: 99;
+            transition: transform 0.15s ease;
+        }
+
+        .floating-cart-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .cart-icon {
+            font-size: 24px;
+            filter: grayscale(100%);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            background: var(--accent);
+            color: white;
+            font-size: 12px;
+            font-weight: 700;
+            min-width: 20px;
+            height: 20px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 6px;
+        }
+
+        /* Cart Preview Lightbox */
+        .cart-preview-lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1001;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cart-preview-lightbox.visible {
+            display: flex;
+        }
+
+        .cart-preview-content {
+            width: 100%;
+            max-width: 500px;
+            max-height: 80vh;
+            background: var(--bg);
+            margin: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-preview-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .cart-preview-header h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .cart-preview-close {
+            width: 36px;
+            height: 36px;
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text);
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cart-preview-close:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .cart-preview-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px 20px;
+        }
+
+        .cart-preview-item {
+            display: flex;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .cart-preview-item:last-child {
+            border-bottom: none;
+        }
+
+        .cart-preview-item-details {
+            flex: 1;
+        }
+
+        .cart-preview-item-name {
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--text);
+        }
+
+        .cart-preview-item-variant {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        .cart-preview-item-qty {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .cart-preview-item-price {
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--text);
+        }
+
+        .cart-preview-item-remove {
+            color: var(--accent);
+            font-size: 11px;
+            cursor: pointer;
+            margin-top: 4px;
+        }
+
+        .cart-preview-item-remove:hover {
+            text-decoration: underline;
+        }
+
+        .cart-preview-footer {
+            padding: 16px 20px;
+            border-top: 1px solid var(--border);
+        }
+
+        .cart-preview-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--text);
+        }
+
+        .cart-preview-empty {
+            text-align: center;
+            padding: 32px;
+            color: var(--text-muted);
+        }
+
         /* Landing page */
         .landing-content {
             display: flex;
@@ -511,6 +690,54 @@
 
         .lightbox-add-btn {
             width: 100%;
+        }
+
+        .size-chart-link {
+            display: inline-block;
+            margin-top: 12px;
+            color: var(--accent);
+            font-size: 13px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .size-chart-link:hover {
+            text-decoration: underline;
+        }
+
+        .lightbox-size-chart {
+            display: none;
+            margin-top: 12px;
+            background: var(--surface);
+            padding: 12px;
+            border: 1px solid var(--border);
+        }
+
+        .lightbox-size-chart.visible {
+            display: block;
+        }
+
+        .lightbox-size-chart .size-chart-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 11px;
+        }
+
+        .lightbox-size-chart .size-chart-table th,
+        .lightbox-size-chart .size-chart-table td {
+            padding: 6px 4px;
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .lightbox-size-chart .size-chart-table th {
+            font-weight: 600;
+            background: #252525;
+        }
+
+        .lightbox-size-chart .size-chart-table th:first-child,
+        .lightbox-size-chart .size-chart-table td:first-child {
+            text-align: left;
         }
 
         /* Design grid */
@@ -1277,6 +1504,12 @@
                                     <span class="cat-price">₹1800</span>
                                 </div>
                             </div>
+                            <span class="size-chart-link" id="size-chart-link" onclick="toggleLightboxSizeChart()" style="display: none;">📏 View Size Chart <span id="size-chart-fit-name"></span></span>
+                            <div class="lightbox-size-chart" id="lightbox-size-chart">
+                                <table class="size-chart-table" id="lightbox-size-chart-table">
+                                    <!-- Size chart loaded dynamically -->
+                                </table>
+                            </div>
                         </div>
                         
                         <!-- Color Selection -->
@@ -1404,6 +1637,32 @@
             <button class="btn btn-primary sticky-checkout-btn" onclick="goToCheckout()">
                 <span id="sticky-checkout-text">Checkout</span>
             </button>
+        </div>
+
+        <!-- Floating Cart Button -->
+        <div class="floating-cart-btn" id="floating-cart-btn" style="display: none;" onclick="openCartPreview()">
+            <span class="cart-icon">🛒</span>
+            <span class="cart-count" id="floating-cart-count">0</span>
+        </div>
+
+        <!-- Cart Preview Lightbox -->
+        <div class="cart-preview-lightbox" id="cart-preview-lightbox">
+            <div class="cart-preview-content">
+                <div class="cart-preview-header">
+                    <h3>Your Cart</h3>
+                    <button class="cart-preview-close" onclick="closeCartPreview()">×</button>
+                </div>
+                <div class="cart-preview-items" id="cart-preview-items">
+                    <!-- Cart items rendered here -->
+                </div>
+                <div class="cart-preview-footer">
+                    <div class="cart-preview-total">
+                        <span>Total</span>
+                        <span id="cart-preview-total">₹0</span>
+                    </div>
+                    <button class="btn btn-primary" onclick="goToCheckoutFromPreview()">Checkout</button>
+                </div>
+            </div>
         </div>
 
         <!-- Step 2: Browse Categories -->
@@ -1740,7 +1999,7 @@
                     ['Chest', '44', '46', '48', '50', '52'],
                     ['Length', '26', '27', '28', '29', '30'],
                     ['Sleeve', '22', '22.5', '23', '23.5', '24'],
-                    ['Shoulder', '21', '22', '24', '24', '25']
+                    ['Shoulder', '21', '22', '23', '24', '25']
                 ]
             },
             'sweatshirt': {
@@ -1840,10 +2099,13 @@
             document.querySelectorAll('.lightbox-color').forEach(c => c.classList.remove('selected'));
             document.querySelectorAll('.lightbox-size').forEach(c => c.classList.remove('selected'));
             
-            // Hide color, size, qty sections
+            // Hide color, size, qty sections and size chart
             document.getElementById('lightbox-color-section').style.display = 'none';
             document.getElementById('lightbox-size-section').style.display = 'none';
             document.getElementById('lightbox-qty-section').style.display = 'none';
+            document.getElementById('lightbox-size-chart').classList.remove('visible');
+            document.getElementById('size-chart-link').style.display = 'none';
+            document.getElementById('size-chart-fit-name').textContent = '';
             document.getElementById('lightbox-add-btn').disabled = true;
             
             lightbox.classList.add('visible');
@@ -1864,6 +2126,10 @@
             lightboxCategory = el.dataset.category;
             lightboxCategoryPrice = parseInt(el.dataset.price);
             
+            // Show and update size chart link
+            document.getElementById('size-chart-link').style.display = 'inline-block';
+            document.getElementById('size-chart-fit-name').textContent = '(' + categories[lightboxCategory].name + ')';
+            
             // Load colors for this category
             const colorGrid = document.getElementById('lightbox-colors');
             const categoryColors = categories[lightboxCategory].colors;
@@ -1875,6 +2141,9 @@
                 </div>
             `).join('');
             
+            // Load size chart for this category
+            loadLightboxSizeChart();
+            
             // Show color section, reset color/size selection
             document.getElementById('lightbox-color-section').style.display = 'block';
             document.getElementById('lightbox-size-section').style.display = 'none';
@@ -1883,6 +2152,40 @@
             lightboxSize = null;
             document.querySelectorAll('.lightbox-size').forEach(c => c.classList.remove('selected'));
             checkLightboxComplete();
+        }
+
+        function toggleLightboxSizeChart() {
+            // Check if category is selected
+            if (!lightboxCategory) {
+                document.getElementById('size-chart-fit-name').textContent = '- choose the fit to view';
+                return;
+            }
+            
+            const sizeChart = document.getElementById('lightbox-size-chart');
+            sizeChart.classList.toggle('visible');
+        }
+
+        function loadLightboxSizeChart(category) {
+            const cat = category || lightboxCategory || 'regular';
+            const table = document.getElementById('lightbox-size-chart-table');
+            const chartData = sizeCharts[cat];
+
+            let html = '<thead><tr>';
+            chartData.headers.forEach(header => {
+                html += `<th>${header}</th>`;
+            });
+            html += '</tr></thead><tbody>';
+
+            chartData.rows.forEach(row => {
+                html += '<tr>';
+                row.forEach(cell => {
+                    html += `<td>${cell}</td>`;
+                });
+                html += '</tr>';
+            });
+            html += '</tbody>';
+
+            table.innerHTML = html;
         }
 
         function selectLightboxColor(el) {
@@ -1939,21 +2242,81 @@
 
         function updateStickyCheckout() {
             const stickyCheckout = document.getElementById('sticky-checkout');
+            const floatingCartBtn = document.getElementById('floating-cart-btn');
             if (cart.length > 0) {
                 const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
                 const itemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
                 document.getElementById('sticky-checkout-text').textContent = `Checkout (${itemCount} item${itemCount > 1 ? 's' : ''}) • ₹${total}`;
                 stickyCheckout.style.display = 'block';
+                floatingCartBtn.style.display = 'flex';
+                document.getElementById('floating-cart-count').textContent = itemCount;
             } else {
                 stickyCheckout.style.display = 'none';
+                floatingCartBtn.style.display = 'none';
             }
+        }
+
+        function openCartPreview() {
+            const lightbox = document.getElementById('cart-preview-lightbox');
+            renderCartPreview();
+            lightbox.classList.add('visible');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function renderCartPreview() {
+            const itemsContainer = document.getElementById('cart-preview-items');
+            
+            if (cart.length === 0) {
+                itemsContainer.innerHTML = '<div class="cart-preview-empty">Your cart is empty</div>';
+                document.getElementById('cart-preview-total').textContent = '₹0';
+            } else {
+                let total = 0;
+                itemsContainer.innerHTML = cart.map((item, index) => {
+                    const itemTotal = item.price * item.quantity;
+                    total += itemTotal;
+                    return `
+                        <div class="cart-preview-item">
+                            <div class="cart-preview-item-details">
+                                <div class="cart-preview-item-name">${item.design}</div>
+                                <div class="cart-preview-item-variant">${item.categoryName} • ${item.color} • ${item.size}</div>
+                                <div class="cart-preview-item-qty">Qty: ${item.quantity}</div>
+                                <div class="cart-preview-item-remove" onclick="removeFromCartPreview(${index})">Remove</div>
+                            </div>
+                            <div class="cart-preview-item-price">₹${itemTotal}</div>
+                        </div>
+                    `;
+                }).join('');
+                document.getElementById('cart-preview-total').textContent = '₹' + total;
+            }
+        }
+
+        function removeFromCartPreview(index) {
+            cart.splice(index, 1);
+            renderCartPreview();
+            updateStickyCheckout();
+            
+            // Close preview if cart is empty
+            if (cart.length === 0) {
+                closeCartPreview();
+            }
+        }
+
+        function closeCartPreview() {
+            document.getElementById('cart-preview-lightbox').classList.remove('visible');
+            document.body.style.overflow = '';
+        }
+
+        function goToCheckoutFromPreview() {
+            closeCartPreview();
+            goToCheckout();
         }
 
         function goToCheckout() {
             renderCart();
             showStep(4);
-            // Hide sticky checkout on cart page
+            // Hide sticky checkout and floating cart on cart page
             document.getElementById('sticky-checkout').style.display = 'none';
+            document.getElementById('floating-cart-btn').style.display = 'none';
         }
 
         function backToDesigns() {
@@ -1966,7 +2329,6 @@
             document.querySelectorAll('.design-card').forEach(c => c.classList.remove('selected'));
             el.classList.add('selected');
             selectedDesign = el.dataset.design;
-            document.getElementById('btn-step1').disabled = false;
         }
 
         function selectColor(el) {
@@ -2054,16 +2416,14 @@
             selectedColor = null;
             selectedSize = null;
             quantity = 1;
-            document.getElementById('qty-value').textContent = '1';
-            
-            document.getElementById('btn-step1').disabled = true;
-            document.getElementById('btn-step2').disabled = true;
-            document.getElementById('btn-step3').disabled = true;
             
             document.querySelectorAll('.category-card').forEach(c => c.classList.remove('selected'));
             document.querySelectorAll('.design-card').forEach(c => c.classList.remove('selected'));
             document.querySelectorAll('.color-btn').forEach(c => c.classList.remove('selected'));
             document.querySelectorAll('.size-btn').forEach(c => c.classList.remove('selected'));
+            
+            // Show sticky checkout since cart still has items
+            updateStickyCheckout();
             
             showStep(1);
         }
@@ -2182,8 +2542,9 @@
             document.querySelectorAll('.color-btn').forEach(c => c.classList.remove('selected'));
             document.querySelectorAll('.size-btn').forEach(c => c.classList.remove('selected'));
             
-            // Hide sticky checkout
+            // Hide sticky checkout and floating cart
             document.getElementById('sticky-checkout').style.display = 'none';
+            document.getElementById('floating-cart-btn').style.display = 'none';
             
             showStep(1);
         }
