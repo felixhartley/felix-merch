@@ -19,6 +19,14 @@
     <meta name="twitter:description" content="Nothing suspicious here. Just ridiculously good T-shirts.">
     <meta name="twitter:image" content="https://felix-merch.vercel.app/open_graph.jpg">
     
+    <!-- EmailJS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script>
+        (function() {
+            emailjs.init("6GGWlr0t5CzY8D_pX");
+        })();
+    </script>
+    
     <style>
         * {
             margin: 0;
@@ -2123,6 +2131,34 @@
             document.getElementById('step-1').classList.add('active');
         }
 
+        // Send order confirmation email
+        function sendOrderEmail(orderData) {
+            const itemsList = orderData.items.map(item => 
+                `• ${item.design} (${item.category}) - ${item.color}, ${item.size} x${item.quantity} = ₹${item.total}`
+            ).join('\n');
+            
+            const templateParams = {
+                customer_name: orderData.customer.name,
+                customer_email: orderData.customer.email,
+                customer_phone: orderData.customer.phone,
+                customer_address: orderData.customer.address,
+                customer_city: orderData.customer.city,
+                customer_pincode: orderData.customer.pincode,
+                order_id: orderData.orderId,
+                order_items: itemsList,
+                order_total: orderData.total,
+                bcc_email: 'felhty@gmail.com'
+            };
+            
+            emailjs.send('service_dv4hv06', 'template_l6lbnee', templateParams)
+                .then(function(response) {
+                    console.log('Email sent successfully!', response.status);
+                })
+                .catch(function(error) {
+                    console.error('Email failed to send:', error);
+                });
+        }
+
         // UPI Payment
         let orderTotal = 0;
         let currentOrderId = '';
@@ -2725,6 +2761,9 @@
                 orderTotal = totalAmount;
                 currentOrderId = orderData.orderId;
                 
+                // Send confirmation email
+                sendOrderEmail(orderData);
+                
                 // Show success
                 document.getElementById('order-id').textContent = orderData.orderId;
                 document.getElementById('final-amount').textContent = '₹' + totalAmount;
@@ -2741,6 +2780,9 @@
                 // Save for UPI payment
                 orderTotal = totalAmount;
                 currentOrderId = orderData.orderId;
+                
+                // Send confirmation email even if sheets fail
+                sendOrderEmail(orderData);
                 
                 // Still show success page even if API fails
                 document.getElementById('order-id').textContent = orderData.orderId;
