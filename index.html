@@ -3,21 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Felix Merch</title>
+    <title>HartleyTees</title>
     
     <!-- Open Graph / Social Media Preview -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://felix-merch.vercel.app">
-    <meta property="og:title" content="Felix Merch">
+    <meta property="og:url" content="https://hartleytees.vercel.app">
+    <meta property="og:title" content="HartleyTees">
     <meta property="og:description" content="Nothing suspicious here. Just ridiculously good T-shirts.">
-    <meta property="og:image" content="https://felix-merch.vercel.app/open_graph.jpg">
+    <meta property="og:image" content="https://hartleytees.vercel.app/open_graph.jpg">
     
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://felix-merch.vercel.app">
-    <meta name="twitter:title" content="Felix Merch">
+    <meta name="twitter:url" content="https://hartleytees.vercel.app">
+    <meta name="twitter:title" content="HartleyTees">
     <meta name="twitter:description" content="Nothing suspicious here. Just ridiculously good T-shirts.">
-    <meta name="twitter:image" content="https://felix-merch.vercel.app/open_graph.jpg">
+    <meta name="twitter:image" content="https://hartleytees.vercel.app/open_graph.jpg">
     
     <!-- EmailJS SDK -->
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
@@ -2165,7 +2165,7 @@
 
         function openUPIPay(platform) {
             const upiId = 'felhty@okicici';
-            const name = 'Felix Merch';
+            const name = 'HartleyTees';
             const amount = orderTotal;
             const transactionNote = 'Order ' + currentOrderId;
             
@@ -2753,9 +2753,9 @@
                 document.body.removeChild(hiddenForm);
                 
                 // Save to localStorage as backup
-                const orders = JSON.parse(localStorage.getItem('felix_merch_orders') || '[]');
+                const orders = JSON.parse(localStorage.getItem('hartleytees_orders') || '[]');
                 orders.push(orderData);
-                localStorage.setItem('felix_merch_orders', JSON.stringify(orders));
+                localStorage.setItem('hartleytees_orders', JSON.stringify(orders));
                 
                 // Save for UPI payment
                 orderTotal = totalAmount;
