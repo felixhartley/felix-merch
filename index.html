@@ -409,17 +409,8 @@
     </button>
 </header>
 
-<!-- LANDING -->
-<div class="step active" id="step-landing">
-    <div class="landing-wrap">
-        <p class="landing-eyebrow">HartleyTees · Est. 2024</p>
-        <p class="landing-headline">Felix shamelessly shoved a link. You clicked. Now you're here — a T-shirt purchase restores balance to the universe.</p>
-        <div class="landing-progress"><div class="landing-progress-fill" id="landing-progress-fill"></div></div>
-    </div>
-</div>
-
 <!-- STEP 1: DESIGNS -->
-<div class="step" id="step-1">
+<div class="step active" id="step-1">
     <div class="page-wrap">
         <div class="page-header">
             <p class="page-eyebrow">All Designs</p>
@@ -884,12 +875,6 @@ let cart = [];
 let lightboxCategory = null, lightboxCategoryPrice = 0;
 let lightboxColor = null, lightboxSize = null, lightboxQty = 1, lightboxDesign = null;
 let orderTotal = 0, currentOrderId = '';
-
-// ── LANDING ───────────────────────────────────────────────────────────────
-window.addEventListener('load', function() {
-    setTimeout(() => document.getElementById('landing-progress-fill').classList.add('active'), 100);
-    setTimeout(() => showStep(1), 5100);
-});
 
 // ── NAV ───────────────────────────────────────────────────────────────────
 function showStep(step) {
